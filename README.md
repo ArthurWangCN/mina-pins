@@ -1,0 +1,2 @@
+# mina-pins
+miniprogram pins
