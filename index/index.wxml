@@ -1,1 +1,16 @@
-<view>test</view>
+<view class="header">
+    <mp-searchbar></mp-searchbar>
+    <view class="tag-list">
+        <scroll-view scroll-x="true" style="width: 100%">
+            <view wx:for="{{tags}}" wx:for-item="tag" wx:key="tag" class="tag-item">{{tag.name}}</view>
+        </scroll-view>
+    </view>
+</view>
+
+<view class="pin-list">
+    <view wx:for="{{tags}}" wx:for-item="tag" wx:key="tag" class="pin-item">
+        <view class="pin-title">{{tag.name}}</view>
+        <image class="pin-image" src="../images/logo.png"></image>
+        <view class="pin-date">收藏于2022-04-01</view>
+    </view> 
+</view>
