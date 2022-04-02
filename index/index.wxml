@@ -2,15 +2,44 @@
     <mp-searchbar></mp-searchbar>
     <view class="tag-list">
         <scroll-view scroll-x="true" style="width: 100%">
-            <view wx:for="{{tags}}" wx:for-item="tag" wx:key="tag" class="tag-item">{{tag.name}}</view>
+            <view
+                wx:for="{{tags}}"
+                wx:for-item="tag"
+                wx:key="tag"
+                class="tag-item"
+            >{{tag.name}}</view>
         </scroll-view>
     </view>
 </view>
 
 <view class="pin-list">
-    <view wx:for="{{tags}}" wx:for-item="tag" wx:key="tag" class="pin-item">
-        <view class="pin-title">{{tag.name}}</view>
+    <view
+        wx:for="{{pins}}"
+        wx:for-item="pin"
+        wx:key="pin"
+        class="pin-item"
+        data-id="{{pin.id}}"
+        bindtap="handlePinTap"
+        bindlongpress="handlePinPress"
+    >
+        <view class="pin-title">{{pin.title}}</view>
         <image class="pin-image" src="../images/logo.png"></image>
         <view class="pin-date">收藏于2022-04-01</view>
     </view> 
 </view>
+
+<mp-dialog title="test" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+    <mp-cells title="提交后表单项报错">
+        <mp-cell show-error prop="title" title="标题" ext-class="">
+            <input bindinput="formInputChange" value="{{curPin.title}}" data-field="title" class="weui-input" placeholder="请输入标题"/>
+        </mp-cell>
+        <mp-cell show-error prop="url" title="链接地址" ext-class="">
+            <input bindinput="formInputChange" value="{{curPin.url}}" data-field="url" class="weui-input" placeholder="请输入链接地址"/>
+        </mp-cell>
+    </mp-cells>
+    <picker bindchange="bindPickerChange" value="{{tagIndex}}" range="{{tagList}}">
+        <view class="picker">
+        当前选择标签：{{tagList[tagIndex]}}
+        </view>
+    </picker>
+</mp-dialog>
